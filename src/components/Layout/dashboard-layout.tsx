@@ -7,7 +7,7 @@ export default function DashboardLayout() {
   return (
     <div> 
         <div className='flex h-screen'>
-          <div >
+          <div className='w-20'>
              <SideBar/>
           </div> 
           <div  className="w-full">

@@ -47,12 +47,12 @@ export default function Command() {
   const total = prix + taxe;
 
   return (
-    <div className="w-[350px] p-5 bg-white shadow-xl rounded-2xl fixed right-0 top-0">
+    <div className="w-[350px] h-screen p-5 bg-white shadow-xl rounded-2xl fixed right-0 top-0">
       <h1 className="font-bold text-2xl mb-5">
         COMMANDE
       </h1>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 hidden">
         {cart.map((item) => (
           <div
             key={item.id}

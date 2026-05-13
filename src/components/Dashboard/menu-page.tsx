@@ -7,8 +7,8 @@ import Command from "../Composants/command";
 export default function MenuPage() {
   const [searchQuery, setSearchQuery] = useState("");
   return (
-    <div className="flex gap-4">
-     <section className="p-6 ">
+    <div className="flex ">
+     <section className="p-6 max-w-4xl  ">
           <header className="mb-8 flex items-center justify-between ">
         <h1 className="font-black text-3xl italic">
           Djolof <span className="text-orange-600">FOOD</span>
