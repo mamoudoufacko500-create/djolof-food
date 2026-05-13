@@ -1,0 +1,9 @@
+import React from 'react'
+
+export default function NotificationsPage() {
+  return (
+    <div>  <div className="flex h-screen items-center justify-center bg-gray-900">
+        <h1 className="text-center text-7xl text-orange-50">HOME</h1>
+      </div></div>
+  )
+}
