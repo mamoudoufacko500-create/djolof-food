@@ -7,28 +7,69 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem("Connexion-info", JSON.stringify({ email, password }));
-    toast.success("Connexion réussie");
-    navigate("/dashboard");
+
+    // Vérifier si les champs sont vides
+    if (!email || !password) {
+      toast.error("Remplis tous les champs");
+      return;
+    }
+
+    // Récupérer les données du localStorage
+    const storedUser = localStorage.getItem("Inscription-info");
+
+    const userData = storedUser
+      ? JSON.parse(storedUser)
+      : null;
+
+    // Vérifier email et mot de passe
+    if (
+      userData &&
+      userData.email === email &&
+      userData.password === password
+    ) {
+      // Sauvegarder connexion
+      localStorage.setItem(
+        "Connexion-info",
+        JSON.stringify({ email, password })
+      );
+
+      toast.success("Connexion réussie");
+
+      navigate("/dashboard");
+    } else {
+      toast.error("Email ou mot de passe incorrect");
+    }
   };
 
   return (
     <div className="space-y-5">
-      <h1 className="text-5xl font-bold">Welcome Back!</h1>
-      <form onSubmit={handleSubmit} className="bg-white p-5 rounded-xl space-y-3">
+      <h1 className="text-5xl font-bold">
+        Welcome Back!
+      </h1>
+
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-5 rounded-xl space-y-3"
+      >
         {/* Email */}
         <div className="flex flex-col gap-2">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">
+            Email
+          </label>
+
           <input
             className="border-2 border-black rounded-xl px-4 py-2"
             type="email"
             required
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
             placeholder="Latyr@gmail.com"
             id="email"
           />
@@ -36,34 +77,55 @@ export default function LoginPage() {
 
         {/* Password */}
         <div className="flex flex-col gap-2">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">
+            Password
+          </label>
+
           <div className="relative border-2 border-black rounded-xl px-4 py-2">
             <input
-              type={showPassword ? "text" : "password"}
+              type={
+                showPassword
+                  ? "text"
+                  : "password"
+              }
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
               placeholder="********"
               id="password"
-              className="w-full"
+              className="w-full outline-none"
             />
+
             <button
               type="button"
               className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() =>
+                setShowPassword(
+                  !showPassword
+                )
+              }
             >
-              {showPassword ? <LuEye /> : <LuEyeClosed />}
+              {showPassword ? (
+                <LuEye />
+              ) : (
+                <LuEyeClosed />
+              )}
             </button>
           </div>
         </div>
 
-        {/* Forget password link */}
+        {/* Forget password */}
         <div>
-          <Link to="/forget" className="text-orange-600 flex justify-end font-bold">
+          <Link
+            to="/forget"
+            className="text-orange-600 flex justify-end font-bold"
+          >
             Forget Password?
           </Link>
         </div>
 
-        {/* Submit button */}
+        {/* Submit */}
         <button
           className="bg-orange-600 text-white cursor-pointer hover:bg-orange-700 transition-colors duration-200 rounded-xl px-4 py-2 w-full"
           type="submit"
@@ -75,18 +137,31 @@ export default function LoginPage() {
       {/* Separator */}
       <div className="flex justify-center items-center gap-6 mx-7">
         <div className="bg-gray-300 h-0.5 w-65"></div>
-        <h1 className="text-gray-300">or</h1>
+
+        <h1 className="text-gray-300">
+          or
+        </h1>
+
         <div className="bg-gray-300 h-0.5 w-65"></div>
       </div>
 
       {/* Social buttons */}
       <div className="flex justify-center items-center gap-9">
         <button className="flex gap-2 border-2 items-center bg-white px-4 py-2 rounded-xl cursor-pointer hover:bg-gray-100">
-          <img className="size-5" src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google" />
+          <img
+            className="size-5"
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="google"
+          />
           <p>Google</p>
         </button>
+
         <button className="flex gap-2 border-2 items-center bg-white px-4 py-2 rounded-xl cursor-pointer hover:bg-gray-100">
-          <img className="size-5" src="https://www.svgrepo.com/show/394174/github.svg" alt="github" />
+          <img
+            className="size-5"
+            src="https://www.svgrepo.com/show/394174/github.svg"
+            alt="github"
+          />
           <p>Github</p>
         </button>
       </div>
@@ -94,7 +169,10 @@ export default function LoginPage() {
       {/* Register link */}
       <div className="text-end mr-7">
         Don't have an account?{" "}
-        <Link to="/register" className="text-orange-600 font-bold">
+        <Link
+          to="/register"
+          className="text-orange-600 font-bold"
+        >
           Sign up
         </Link>
       </div>

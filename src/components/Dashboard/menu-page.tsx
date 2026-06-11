@@ -3,9 +3,21 @@ import ProductCard from "@/elements/product-card";
 import React, { useState } from "react";
 import { FaBell, FaSearch } from "react-icons/fa";
 import Command from "../Composants/command";
+import type { ListProductType } from "@/data/type";
 
 export default function MenuPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  // État global du panier
+  const [panier, setPanier] = useState<
+    {
+      menu: ListProductType;
+      quantite: number;
+    }[]
+  >([]);
+  
+   const menusFiltres = ListProduct.filter((menu) =>
+    menu.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="flex ">
      <section className="p-6 max-w-4xl  ">
@@ -34,14 +46,15 @@ export default function MenuPage() {
         <h1 className="font-bold text-2xl">Special Menu For You</h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {ListProduct.map((card) => (
-            <ProductCard key={card.id} {...card} />
-          ))}
+      {menusFiltres.map((card) => (
+  <ProductCard key={card.id} {...card}  panier={panier}
+                setPanier={setPanier}/>
+))}
         </div>
       </div>
      </section>
       <section >
-        <Command/>
+        <Command panier={panier} setPanier={setPanier}/>
       </section>
     </div>
   );

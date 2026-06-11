@@ -20,6 +20,7 @@ export default function SideBar() {
             }`
               }
               to={menu.path}
+              end
             >
               <menu.icon className=' size-5'/>
             </NavLink>

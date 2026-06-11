@@ -1,4 +1,6 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { DashboardChart } from "./dashboard-chart";
+import { CircleChart } from "./circlechart";
 
 export default function DashboardTabs() {
   return (
@@ -45,43 +47,69 @@ export default function DashboardTabs() {
         <TabsContent value="today">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="border rounded-2xl p-5">
-              <h2 className="font-bold text-xl">
-                Total Income Today
-              </h2>
-              <p>$20,000</p>
+              <DashboardChart />
             </div>
 
             <div className="border rounded-2xl p-5">
-              <h2 className="font-bold text-xl">
-                Daily Balance
-              </h2>
-              <p>$30,000</p>
+              <CircleChart/>
             </div>
           </div>
         </TabsContent>
 
         {/* Contenu Week */}
         <TabsContent value="week">
-          <h2 className="text-2xl font-bold">
-            Weekly Statistics
-          </h2>
-          <p>Données de la semaine</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="border rounded-2xl p-5">
+              <DashboardChart />
+            </div>
+
+            <div className="border rounded-2xl p-5">
+              <CircleChart/>
+            </div>
+            <div>
+              <h1>Total Balance</h1>
+              <div>
+                <div>
+                  <h2>Total balance</h2>
+                  <span>40 000 FCFA</span>
+                </div>
+                <p>(+ 20 increase)</p>
+              </div>
+               <div>
+                <div>
+                  <h2>Total Expense</h2>
+                  <span>25 000 FCFA</span>
+                </div>
+                <p>(+ 30 increase)</p>
+              </div>
+            </div>
+          </div>
         </TabsContent>
 
         {/* Contenu Month */}
         <TabsContent value="month">
-          <h2 className="text-2xl font-bold">
-            Monthly Statistics
-          </h2>
-          <p>Données du mois</p>
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="border rounded-2xl p-5">
+              <DashboardChart />
+            </div>
+
+            <div className="border rounded-2xl p-5">
+              <CircleChart/>
+            </div>
+          </div>
         </TabsContent>
 
         {/* Contenu Year */}
         <TabsContent value="year">
-          <h2 className="text-2xl font-bold">
-            Yearly Statistics
-          </h2>
-          <p>Données de l'année</p>
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="border rounded-2xl p-5">
+              <DashboardChart />
+            </div>
+
+            <div className="border rounded-2xl p-5">
+              <CircleChart/>
+            </div>
+          </div>
         </TabsContent>
 
       </Tabs>

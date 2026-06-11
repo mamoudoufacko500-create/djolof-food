@@ -16,6 +16,9 @@ import ProduitsPage from "./components/Dashboard/produits-page";
 import SettingPage from "./components/Dashboard/setting-page";
 import MessagePage from "./components/Dashboard/message-page";
 import NotificationsPage from "./components/Dashboard/notifications-page";
+import FormCommande from "./components/Composants/form-commande";
+import AddCustomer from "./components/Composants/Add-customer";
+import AddProduct from "./components/Composants/Add-product";
 
 function App() {
   return (
@@ -28,10 +31,13 @@ function App() {
         {/* Route Dashboard */}
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<MenuPage />} />
+           <Route path="form-commande" element={<FormCommande/>} />
           <Route path="menager" element={<MenagerPage />} />
           <Route path="customers" element={<CustomersPage />} />
+           <Route path="customers/add-customer" element={<AddCustomer/>} />
           <Route path="pending" element={<PendingPage />} />
           <Route path="produits" element={<ProduitsPage />} />
+          <Route path="produits/add" element={<AddProduct />} />
           <Route path="settings" element={<SettingPage />} />
           <Route path="message" element={<MessagePage />} />
           <Route path="notification" element={<NotificationsPage />} />
